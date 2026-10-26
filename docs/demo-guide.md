@@ -24,7 +24,7 @@ Open the demo account and select **Reset demo data**, then confirm. This clears 
 
 ## Preview
 
-Run `npm run dev` and use the printed Local URL. The production build is in `dist/` and needs a static host with SPA history fallback. A private Sites deployment, when available, hosts only the static React frontend; the MERN backend remains a separate service for later development.
+Run `npm run dev` and use the printed Local URL. The production build is in `frontend/dist/` and needs a static host with SPA history fallback. A private Sites deployment, when available, hosts only the static React frontend; the MERN backend remains a separate service for later development.
 
 ## Customer account walkthrough
 

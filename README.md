@@ -14,7 +14,7 @@ npm run dev
 Open the Local URL printed by Vite (normally `http://127.0.0.1:5173`; if occupied, it chooses the next free port).
 
 ```bash
-npm run build        # typecheck and production assets in dist/
+npm run build        # typecheck and production assets in frontend/dist/
 npm test             # catalogue and shopping interaction tests
 npm run preview      # serve the production build
 npm run dev:server   # optional Express scaffold on port 5001
@@ -26,7 +26,7 @@ The frontend works without a database or API server. The backend health endpoint
 
 - `frontend/`: React, TypeScript, Vite, React Router, CSS, GSAP ScrollTrigger, Motion, Lenis, local demo state and tests.
 - `backend/`: Express application, optional MongoDB connection, Mongoose product/order models. Commerce/auth endpoints are intentionally not implemented yet.
-- `dist/`: generated static storefront; serve with history fallback to `index.html` for deep links.
+- `frontend/dist/`: generated static storefront; serve with history fallback to `index.html` for deep links.
 - `.agents/skills/`: project-local frontend design, GSAP, and web interface review skills.
 - `docs/`: design brief, asset provenance, verification notes, and presentation walkthrough.
 
@@ -71,3 +71,21 @@ This is a curated frontend snapshot, with no embedded third-party scripts or aut
 The homepage's existing curated-product row is now a runway showcase in **The trending edit**, between the collection gallery and Instagram journal. Six existing catalogue pieces advance through responsive depth positions on a shared stage. Product details, wishlist action and product link settle together; size/fit selection remains on the existing product page.
 
 `frontend/src/runway/model.ts` holds the curated list, responsive positions, per-product adjustments and timing. `TrendingRunway.tsx` owns the GSAP progress timeline, observers, autoplay and pointer controls. Normal travel takes 900ms with a five-second dwell. Reduced motion starts paused and selects immediately. Autoplay pauses outside the viewport, in hidden tabs, during hover/focus/touch, and after explicit pause. No extra dependencies or product cutouts were introduced.
+
+## Deploy the frontend demo on Vercel
+
+Vercel configuration is included for either project root. Use settings that match the selected Root Directory:
+
+| Setting | Repository root (recommended) | Frontend folder |
+| --- | --- | --- |
+| Root Directory | `./` | `frontend` |
+| Framework Preset | Vite | Vite |
+| Install Command | `npm ci` | `npm ci` |
+| Build Command | `npm run build` | `npm run build` |
+| Output Directory | `frontend/dist` | `dist` |
+
+The root `vercel.json` and `frontend/vercel.json` set the matching output directory and SPA rewrite. If using `frontend` as the Root Directory, keep Vercel's option to include source files outside the Root Directory enabled: this npm workspace uses the repository's root lockfile. No environment variables are needed for the current frontend demo.
+
+The build now writes inside `frontend/dist`, rather than the previous repository-level `dist`. Commit and push these configuration changes, check the Root Directory/settings above, and redeploy. Product, account and admin URLs rewrite to `index.html`, allowing React Router to handle direct visits and refreshes.
+
+This deploys the customer storefront and admin UI as a static demo. Its accounts, catalogue edits and orders use browser storage; the Express/MongoDB scaffold is not deployed by these configurations.
