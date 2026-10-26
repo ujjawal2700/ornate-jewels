@@ -1,0 +1,315 @@
+/* Photography takes the full width; commerce stays in one compact row. */
+#trending-products {
+  width: calc(100% - clamp(32px, 6vw, 112px));
+  max-width: 1800px;
+}
+.curated-shopping .curated-heading h2 {
+  font-size: clamp(44px, 5.8vw, 88px);
+  line-height: 1.04;
+}
+.trending-runway {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: clamp(20px, 3vw, 56px);
+  min-width: 0;
+  color: #4a2e36;
+  isolation: isolate;
+}
+.runway-display {
+  display: contents;
+}
+.runway-stage {
+  grid-column: 1 / -1;
+  height: clamp(330px, 46vw, 900px);
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  isolation: isolate;
+}
+.runway-atmosphere {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 72% 57%, #bc9b7518, transparent 65%);
+  pointer-events: none;
+}
+.runway-piece {
+  position: absolute;
+  width: 29%;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+.runway-piece-select {
+  display: block;
+  width: 100%;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.runway-photo {
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 3 / 4;
+  background: #e4dbce;
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.45s;
+}
+.runway-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  -webkit-user-drag: none;
+}
+.runway-piece-select:not(:disabled):hover .runway-photo {
+  transform: translateY(-9px);
+  box-shadow: 0 22px 28px -22px #4a2e3650;
+}
+.runway-piece-select:focus-visible {
+  outline: 2px solid #866543;
+  outline-offset: 7px;
+}
+.runway-piece-select:disabled {
+  cursor: default;
+}
+.runway-product-panel {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+  align-self: center;
+}
+.runway-product-info {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto;
+  align-items: center;
+  gap: clamp(18px, 2.5vw, 44px);
+  min-height: 88px;
+}
+.runway-product-identity {
+  min-width: 0;
+}
+.runway-product-category {
+  display: block;
+  font-size: 10px;
+  color: #926d54;
+  margin-bottom: 7px;
+}
+.runway-product-panel h3 {
+  font: 400 clamp(24px, 2.1vw, 34px)/1.15 var(--serif);
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+.runway-product-price {
+  font-size: 14px;
+  color: #785347;
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+  white-space: nowrap;
+}
+.runway-availability {
+  display: block;
+  font-size: 10px;
+  margin-top: 7px;
+  white-space: normal;
+}
+.runway-product-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.runway-product-actions .button {
+  font-size: 11px;
+  letter-spacing: 0;
+  padding: 12px 18px;
+  min-height: 46px;
+  justify-content: space-between;
+  gap: 20px;
+  white-space: nowrap;
+  text-align: left;
+  line-height: 1.5;
+}
+.runway-busy-link {
+  opacity: 0.55;
+  pointer-events: none;
+}
+.runway-save {
+  width: 44px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #946b64;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.runway-save:hover,
+.runway-save[aria-pressed="true"] {
+  background: #b88e7d20;
+  color: #6b394b;
+}
+.runway-save:focus-visible {
+  outline: 2px solid #98754e;
+  outline-offset: 3px;
+}
+.runway-controls {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #795e50;
+}
+.runway-controls > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.runway-controls button:not(.runway-autoplay) {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.runway-controls button:not(.runway-autoplay):hover {
+  background: #b69a7820;
+}
+.runway-controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.runway-controls button:focus-visible {
+  outline: 2px solid #98754e;
+  outline-offset: 3px;
+}
+.runway-controls > div > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.runway-controls i {
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: #ae8f7350;
+}
+.runway-autoplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+.runway-autoplay > span,
+.runway-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.runway-image-fallback {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  background: #4a3239;
+  color: #d5bea9;
+  font-size: 12px;
+  text-align: center;
+  padding: 15px;
+}
+.runway-empty {
+  padding: 50px 25px;
+  text-align: center;
+}
+.runway-empty p {
+  font: 400 30px var(--serif);
+  margin: 0 0 15px;
+}
+.runway-tablet .runway-piece {
+  width: 33%;
+}
+.runway-mobile .runway-piece {
+  width: 54%;
+}
+@media (max-width: 1100px) {
+  .trending-runway {
+    column-gap: 20px;
+  }
+  .runway-product-info {
+    gap: 18px;
+  }
+  .runway-product-actions .button {
+    padding-inline: 13px;
+    gap: 10px;
+  }
+}
+@media (max-width: 920px) {
+  .runway-product-info {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 12px;
+  }
+  .runway-product-identity {
+    grid-column: 1 / -1;
+  }
+  .runway-product-panel {
+    padding-block: 8px;
+  }
+  .runway-controls {
+    align-self: end;
+    margin-bottom: 8px;
+  }
+}
+@media (max-width: 620px) {
+  .trending-runway {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+  }
+  .runway-stage {
+    height: clamp(285px, 88vw, 530px);
+  }
+  .runway-product-panel {
+    grid-row: 2;
+    padding: 0;
+  }
+  .runway-product-info {
+    min-height: 115px;
+  }
+  .runway-product-panel h3 {
+    font-size: 28px;
+  }
+  .runway-controls {
+    grid-column: 1;
+    grid-row: 3;
+    justify-content: space-between;
+    margin: 0;
+  }
+  .runway-photo,
+  .runway-piece-select {
+    border-radius: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trending-runway * {
+    transition: none !important;
+    will-change: auto !important;
+  }
+}

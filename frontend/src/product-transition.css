@@ -1,0 +1,58 @@
+html[data-product-transition]::view-transition-group(*) {
+  animation-duration: 760ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+html[data-product-transition]::view-transition-group(root) {
+  animation-duration: 320ms;
+}
+html[data-product-transition]::view-transition-old(root) {
+  animation-duration: 180ms;
+}
+html[data-product-transition]::view-transition-new(root) {
+  animation-duration: 380ms;
+}
+html[data-product-transition]::view-transition-group(ornate-product-image) {
+  z-index: 2;
+}
+html[data-product-transition]::view-transition-image-pair(
+    ornate-product-image
+  ) {
+  isolation: isolate;
+}
+html[data-product-transition]::view-transition-old(ornate-product-image),
+html[data-product-transition]::view-transition-new(ornate-product-image) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  mix-blend-mode: normal;
+}
+html[data-product-transition]::view-transition-group(ornate-product-name),
+html[data-product-transition]::view-transition-group(ornate-product-price) {
+  z-index: 3;
+  animation-duration: 680ms;
+}
+html[data-product-transition]::view-transition-new(ornate-product-description) {
+  animation: ornate-description-arrival 500ms 180ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes ornate-description-arrival {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-transition.product-shared-arrival {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-product-transition]::view-transition-group(*),
+  html[data-product-transition]::view-transition-old(*),
+  html[data-product-transition]::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
